@@ -70,10 +70,13 @@ def assert_all_iothub_objects_have_been_collected():
     them and assert so the test fails.  Finally, attempt to clean up leaks so that
     future tests in this session have a clean slate (or as clean as we can make it).
     """
-    pass  # can't run this until python PR 334 accepted
-    """
-    while gc.collect(2):
-        time.sleep(1)
+    while True:
+        collected = gc.collect(2)
+        if not collected:
+            break
+        else:
+            logger.info("Collected {} objects".format(collected))
+            time.sleep(1)
     objs = get_all_iothub_objects()
     if len(objs):
         logger.error("Test failure.  Objects have leaked:")
@@ -81,4 +84,5 @@ def assert_all_iothub_objects_have_been_collected():
             logger.error("LEAK: {}".format(obj))
         _free_all(objs)
         assert False
-    """
+    else:
+        logger.info("All iothub objects have been collected.  No leaks!")

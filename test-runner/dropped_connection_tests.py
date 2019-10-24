@@ -7,12 +7,33 @@ import asyncio
 import runtime_config
 from twin_tests import wait_for_reported_properties_update
 from sample_content import next_random_string
+from adapters import adapter_config
 
 
 telemetry_output_name = "telemetry"
 
 
 class MotherOfAllBaseClasses(object):
+    @pytest.fixture(scope="class", autouse=True)
+    def extend_rest_timeout(self, request, logger):
+        previous_timeout = adapter_config.default_api_timeout
+        adapter_config.default_api_timeout = max(300, previous_timeout)
+        logger(
+            "Starting test class: Adjusting REST timeout to {} seconds".format(
+                adapter_config.default_api_timeout
+            )
+        )
+
+        def fin():
+            adapter_config.default_api_timeout = previous_timeout
+            logger(
+                "Finishing test class: Replacing old REST timeout of {} seconds".format(
+                    previous_timeout
+                )
+            )
+
+        request.addfinalizer(fin)
+
     @pytest.fixture(
         params=[
             pytest.param("DROP", id="Drop using iptables DROP"),
@@ -146,7 +167,6 @@ class DroppedConnectionTestsBase(object):
 
 class DroppedConnectionTestsTelemetry(object):
     @pytest.mark.it("Can reliably send an event")
-    @pytest.mark.skip("#BKTODO")
     async def test_client_dropped_send_event(
         self, client, before_api_call, after_api_call, eventhub, test_payload
     ):
@@ -176,26 +196,7 @@ class DroppedConnectionTestsC2d(object):
         # this test will fail in the cleanup when the test wrapper has
         # a chance to look for leaks
 
-    @pytest.mark.it("Can reliably subscribe to the C2d topic")
-    @pytest.mark.skip("#BKTODO")
-    async def test_client_dropped_c2d_subscribe(
-        self, client, service, before_api_call, after_api_call, test_string
-    ):
-        await before_api_call()
-        subscribe_future = asyncio.ensure_future(client.enable_c2d())
-        await after_api_call()
-
-        await subscribe_future
-        test_input_future = asyncio.ensure_future(client.wait_for_c2d_message())
-        await asyncio.sleep(2)  # wait for receive pipeline to finish setting up
-
-        await service.send_c2d(client.device_id, test_string)
-
-        received_message = await test_input_future
-        assert received_message == test_string
-
     @pytest.mark.it("Can reliably reveive c2d (1st-time possible subscribe)")
-    @pytest.mark.skip("#BKTODO")
     async def test_client_dropped_c2d_1st_call(
         self, client, service, before_api_call, after_api_call, test_string
     ):
@@ -211,7 +212,6 @@ class DroppedConnectionTestsC2d(object):
         received_message = await test_input_future
         assert received_message == test_string
 
-    @pytest.mark.skip("#BKTODO")
     @pytest.mark.it("Can reliably reveive c2d (2nd-time)")
     async def test_client_dropped_c2d_2nd_call(
         self, client, service, before_api_call, after_api_call
@@ -245,7 +245,6 @@ class DroppedConnectionTestsTwin(object):
     @pytest.mark.it(
         "Can reliably update reported properties (1st time - possible subscribe)"
     )
-    @pytest.mark.skip("#BKTODO")
     async def test_client_dropped_reported_properties_publish_1st_call(
         self,
         client,
@@ -255,9 +254,6 @@ class DroppedConnectionTestsTwin(object):
         registry,
         sample_reported_props,
     ):
-        if isinstance(self, CallMethodBeforeOnDisconnected):
-            # paho doesn't retry subscribe so this fails
-            pytest.skip()
 
         props = sample_reported_props()
 
@@ -274,7 +270,6 @@ class DroppedConnectionTestsTwin(object):
         )
 
     @pytest.mark.it("Can reliably update reported properties (2nd time)")
-    @pytest.mark.skip("#BKTODO")
     async def test_client_dropped_reported_properties_publish_2nd_call(
         self,
         client,
@@ -302,7 +297,6 @@ class DroppedConnectionTestsTwin(object):
 
 class DroppedConnectionTestsInputOutput(object):
     @pytest.mark.it("Can rerliably send an output event")
-    @pytest.mark.skip("#BKTODO")
     async def test_client_dropped_send_output(
         self, client, before_api_call, after_api_call, eventhub, test_payload
     ):
