@@ -1,4 +1,13 @@
-trigger: none
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- nsadula-patch-1-1
+
+pool:
+  name: E2E-Python-RPI
 
 parameters:
   langauge: ''
