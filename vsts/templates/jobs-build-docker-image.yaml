@@ -1,16 +1,4 @@
-trigger:
-- nsadula-patch-1-1
-
-parameters:
-  langauge: ''
-  repo: ''
-  commit: ''
-  forced_image: ''
-  job_tag: 'linux'
-  variant: ''
-  repo_address: $(IOTHUB-E2E-REPO-ADDRESS)
-  repo_user: $(IOTHUB-E2E-REPO-USER)
-  repo_password: $(IOTHUB-E2E-REPO-PASSWORD)
+trigger: none
 
 jobs:
 - job: 'build_${{ parameters.job_tag }}_container'
