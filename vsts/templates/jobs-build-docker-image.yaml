@@ -1,18 +1,18 @@
 trigger: none
 
-parameters:
-  langauge: ''
-  repo: ''
-  commit: ''
-  forced_image: ''
-  job_tag: 'linux'
-  variant: ''
-  repo_address: $(IOTHUB-E2E-REPO-ADDRESS)
-  repo_user: $(IOTHUB-E2E-REPO-USER)
-  repo_password: $(IOTHUB-E2E-REPO-PASSWORD)
+#parameters:
+#  langauge: ''
+#  repo: ''
+#  commit: ''
+#  forced_image: ''
+#  job_tag: 'linux'
+#  variant: ''
+#  repo_address: $(IOTHUB-E2E-REPO-ADDRESS)
+#  repo_user: $(IOTHUB-E2E-REPO-USER)
+#  repo_password: $(IOTHUB-E2E-REPO-PASSWORD)
 
 jobs:
-- job: 'build_${{ parameters.job_tag }}_container'
+- job: 'build_${{ linux }}_container'
   pool:
     name: E2E-Python-RPI
 #      vmImage: 'Ubuntu 16.04'
