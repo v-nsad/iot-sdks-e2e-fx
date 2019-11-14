@@ -2,6 +2,17 @@ variables:
   Horton.FrameworkRoot: $(Build.SourcesDirectory)
 
 jobs:
+
+  steps:
+
+  - template: steps-ensure-e2e-fx-repo.yaml
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+      architecture: 'x64'
+
+jobs:
 - template: vsts/templates/jobs-build-docker-image.yaml
   parameters:
     langauge: 'pythonv2'
