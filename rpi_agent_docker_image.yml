@@ -1,3 +1,6 @@
+variables:
+  Horton.FrameworkRoot: $(Build.SourcesDirectory)
+  
 jobs:
 - template: vsts/templates/jobs-build-docker-image.yaml
   parameters:
