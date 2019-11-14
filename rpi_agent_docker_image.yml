@@ -1,5 +1,5 @@
 jobs:
-- template: jobs-build-docker-image.yaml
+- template: vsts/templates/jobs-build-docker-image.yaml
   parameters:
     langauge: 'pythonv2'
     repo: 'Azure/iot-sdks-e2e-fx'
