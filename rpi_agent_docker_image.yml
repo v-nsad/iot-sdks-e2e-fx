@@ -3,7 +3,7 @@ variables:
 
 jobs:
 
-  steps:
+steps:
 
   - template: steps-ensure-e2e-fx-repo.yaml
 
@@ -12,15 +12,15 @@ jobs:
       versionSpec: '3.x'
       architecture: 'x64'
 
-jobs:
-- template: vsts/templates/jobs-build-docker-image.yaml
-  parameters:
-    langauge: 'pythonv2'
-    repo: 'Azure/iot-sdks-e2e-fx'
-    commit: 'master'
-    forced_image: ''
-    job_tag: 'linux'
-    variant: 'linux'
-    repo_address: $(IOTHUB-E2E-REPO-ADDRESS)
-    repo_user: $(IOTHUB-E2E-REPO-USER)
-    repo_password: $(IOTHUB-E2E-REPO-PASSWORD)
+- job:
+ - template: vsts/templates/jobs-build-docker-image.yaml
+   parameters:
+     langauge: 'pythonv2'
+     repo: 'Azure/iot-sdks-e2e-fx'
+     commit: 'master'
+     forced_image: ''
+     job_tag: 'linux'
+     variant: 'linux'
+     repo_address: $(IOTHUB-E2E-REPO-ADDRESS)
+     repo_user: $(IOTHUB-E2E-REPO-USER)
+     repo_password: $(IOTHUB-E2E-REPO-PASSWORD)
