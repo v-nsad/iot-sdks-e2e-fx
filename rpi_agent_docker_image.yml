@@ -1,6 +1,9 @@
 variables:
   Horton.FrameworkRoot: $(Build.SourcesDirectory)
 
+command: ["/bin/sh","-c"]
+args: ["python --version && python3 --version"]
+
 jobs:
 - template: vsts/templates/jobs-build-docker-image.yaml
   parameters:
