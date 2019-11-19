@@ -13,7 +13,7 @@ from colorama import Fore
 colorama.init(autoreset=True)
 
 default_repo = "(Azure/azure-iot-sdk-BLAH)"
-all_languages = ["c", "csharp", "pythonv1", "pythonv2", "node", "java"]
+all_languages = ["pythonv2"]
 
 parser = argparse.ArgumentParser(description="build docker image for testing")
 parser.add_argument(
