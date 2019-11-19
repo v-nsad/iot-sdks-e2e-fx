@@ -1,0 +1,15 @@
+variables:
+  Horton.FrameworkRoot: $(Build.SourcesDirectory)
+
+jobs:
+- template: templates/jobs-build-docker-image.yaml
+  parameters:
+    langauge: 'pythonv2'
+    repo: 'Azure/iot-sdks-e2e-fx'
+    commit: 'master'
+    forced_image: ''
+    job_tag: 'linux'
+    variant: 'linux'
+    repo_address: $(IOTHUB-E2E-REPO-ADDRESS)
+    repo_user: $(IOTHUB-E2E-REPO-USER)
+    repo_password: $(IOTHUB-E2E-REPO-PASSWORD)
