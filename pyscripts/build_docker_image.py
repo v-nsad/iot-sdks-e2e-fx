@@ -13,7 +13,7 @@ from colorama import Fore
 colorama.init(autoreset=True)
 
 default_repo = "(Azure/azure-iot-sdk-BLAH)"
-all_languages = ["pythonv2"]
+all_languages = ["c", "csharp", "pythonv1", "pythonv2", "node", "java"]
 
 parser = argparse.ArgumentParser(description="build docker image for testing")
 parser.add_argument(
@@ -216,4 +216,4 @@ if not docker_tags.running_on_azure_pipelines():
         + "./deploy-test-containers.sh --{} {}:{}".format(
             tags.language, tags.docker_full_image_name, tags.image_tags[0]
         )
-    )    
+    )
