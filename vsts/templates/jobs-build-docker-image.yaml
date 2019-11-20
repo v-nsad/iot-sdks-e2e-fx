@@ -22,7 +22,7 @@ jobs:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.x'
-      architecture: 'x64'
+      architecture: 'ARM'
 
   - powershell: |
       $BuildImage="yes"
