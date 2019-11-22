@@ -75,10 +75,10 @@ jobs:
     env:
       CommitToPass: $(CommitToPass)
 
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.x'
-      architecture: 'x64'
+#  - task: UsePythonVersion@0
+#    inputs:
+#      versionSpec: '3.x'
+#      architecture: 'x64'
     condition: and(succeeded(), eq(variables['buildImage'],'yes'))
 
   - powershell: $(Horton.FrameworkRoot)/scripts/install-pyscript-reqs.ps1
