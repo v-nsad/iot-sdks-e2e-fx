@@ -12,7 +12,7 @@ parameters:
 jobs:
 - job: 'build_${{ parameters.job_tag }}_container'
   pool:
-    name: Beatrice_Pi-4.0
+    name: Charlie_Pi-5.0
 #      vmImage: 'Ubuntu 16.04'
 
   steps:
