@@ -22,7 +22,7 @@ jobs:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.x'
-      architecture: 'armv7l'
+#      architecture: 'ARM'
 
   - powershell: |
       $BuildImage="yes"
@@ -78,7 +78,7 @@ jobs:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.x'
-      architecture: 'armv7l'
+#      architecture: 'ARM'
     condition: and(succeeded(), eq(variables['buildImage'],'yes'))
 
   - powershell: $(Horton.FrameworkRoot)/scripts/install-pyscript-reqs.ps1
