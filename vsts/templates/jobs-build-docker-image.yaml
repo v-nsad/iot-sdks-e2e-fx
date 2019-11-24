@@ -75,8 +75,8 @@ jobs:
     env:
       CommitToPass: $(CommitToPass)
 
- - task: UsePythonVersion@0
-   inputs:
+  - task: UsePythonVersion@0
+    inputs:
       versionSpec: '2.x'
       architecture: 'ARM'
     condition: and(succeeded(), eq(variables['buildImage'],'yes'))
@@ -99,4 +99,4 @@ jobs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)/'
       ArtifactName: 'patch'
     condition: always()
-    
+   
