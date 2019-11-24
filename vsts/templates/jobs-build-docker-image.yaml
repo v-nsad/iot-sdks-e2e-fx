@@ -19,9 +19,9 @@ jobs:
 
   - template: steps-ensure-e2e-fx-repo.yaml
 
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.x'
+#  - task: UsePythonVersion@0
+#    inputs:
+#      versionSpec: '3.x'
 #      architecture: 'ARM'
 
   - powershell: |
@@ -75,11 +75,11 @@ jobs:
     env:
       CommitToPass: $(CommitToPass)
 
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.x'
+# - task: UsePythonVersion@0
+#   inputs:
+#      versionSpec: '3.x'
 #      architecture: 'ARM'
-    condition: and(succeeded(), eq(variables['buildImage'],'yes'))
+#    condition: and(succeeded(), eq(variables['buildImage'],'yes'))
 
   - powershell: $(Horton.FrameworkRoot)/scripts/install-pyscript-reqs.ps1
     displayName: "pip install requirements.txt"
