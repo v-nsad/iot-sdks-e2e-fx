@@ -12,7 +12,7 @@ parameters:
 jobs:
 - job: 'build_${{ parameters.job_tag }}_container'
   pool:
-    name: Charlie_Pi-5.0
+    name: class_pi
 #      vmImage: 'Ubuntu 16.04'
 
   steps:
@@ -21,8 +21,8 @@ jobs:
 
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: '3.5.3'
-#      architecture: 'ARM'
+      versionSpec: '3.x'
+      architecture: 'ARM'
 
   - powershell: |
       $BuildImage="yes"
@@ -77,8 +77,8 @@ jobs:
 
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: '3.5.3'
-#      architecture: 'ARM'
+      versionSpec: '3.x'
+      architecture: 'ARM'
     condition: and(succeeded(), eq(variables['buildImage'],'yes'))
 
   - powershell: $(Horton.FrameworkRoot)/scripts/install-pyscript-reqs.ps1
