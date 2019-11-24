@@ -21,7 +21,7 @@ jobs:
 
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: '2.x'
+      versionSpec: '3.6.8'
       architecture: 'ARM'
 
   - powershell: |
@@ -77,7 +77,7 @@ jobs:
 
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: '2.x'
+      versionSpec: '3.6.8'
       architecture: 'ARM'
     condition: and(succeeded(), eq(variables['buildImage'],'yes'))
 
