@@ -21,7 +21,7 @@ parser.add_argument(
     help="language to build",
     type=str,
     required=True,
-    choices=all_languages,
+    choices=all_languages
 )
 parser.add_argument("--repo", help="repo with source", type=str, default=default_repo)
 parser.add_argument(
