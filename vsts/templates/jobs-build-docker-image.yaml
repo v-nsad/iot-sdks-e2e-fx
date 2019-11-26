@@ -5,9 +5,9 @@ parameters:
   forced_image: ''
   job_tag: 'linux'
   variant: ''
-  repo_address: $(IOTHUB-E2E-REPO-ADDRESS)
-  repo_user: $(IOTHUB-E2E-REPO-USER)
-  repo_password: $(IOTHUB-E2E-REPO-PASSWORD)
+  repo_address: 'iotsdke2e.azurecr.io'
+  repo_user: 'iotsdke2e'
+  repo_password: 'FjolpYT81uiBkx/kH2RRIs4QsVRijPeU'
 
 jobs:
 - job: 'build_${{ parameters.job_tag }}_container'
