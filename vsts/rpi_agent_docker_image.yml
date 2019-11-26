@@ -6,10 +6,10 @@ jobs:
   parameters:
     langauge: 'pythonv2'
     repo: '$(Horton.Repo)'
-    commit: 'master'
-    forced_image: ''
-    job_tag: 'linux'
-    variant: 'linux'
+    commit: '$(Horton.Commit)'
+    forced_image: '$(Horton.ForcedImage)'
+    job_tag: 'py38'
+    variant: 'py38'
     repo_address: $(IOTHUB-E2E-REPO-ADDRESS)
     repo_user: $(IOTHUB-E2E-REPO-USER)
     repo_password: $(IOTHUB-E2E-REPO-PASSWORD)
