@@ -4,12 +4,12 @@ variables:
 jobs:
 - template: templates/jobs-build-docker-image.yaml
   parameters:
-    langauge: 'pythonv2'
-    repo: 'azure/azure-iot-sdk-python'
-    commit: 'master'
+    langauge: pythonv2
+    repo: Azure/azure-iot-sdk-python
+    commit: master
     forced_image: ''
-    job_tag: 'linux'
-    variant: 'linux'
+    job_tag: linux
+    variant: linux
     repo_address: $(IOTHUB-E2E-REPO-ADDRESS)
     repo_user: $(IOTHUB-E2E-REPO-USER)
     repo_password: $(IOTHUB-E2E-REPO-PASSWORD)
