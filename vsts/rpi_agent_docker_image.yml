@@ -4,7 +4,7 @@ variables:
 jobs:
 - template: templates/jobs-build-docker-image.yaml
   parameters:
-    langauge: pythonv2
+    language: pythonv2
     repo: Azure/azure-iot-sdk-python
     commit: master
     forced_image: ''
