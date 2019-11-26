@@ -5,7 +5,7 @@ jobs:
 - template: templates/jobs-build-docker-image.yaml
   parameters:
     langauge: 'pythonv2'
-    repo: 'Azure/iot-sdk-python'
+    repo: '$(Horton.Repo)'
     commit: 'master'
     forced_image: ''
     job_tag: 'linux'
