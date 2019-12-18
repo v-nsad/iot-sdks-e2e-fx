@@ -13,7 +13,6 @@ class ConnectionStatus(object):
         Since the iothub clients don't expose on_connected and on_disconnected events,
         we have to add our own.
         """
-        self.connected = False
         self.connected_event = Event()
         self.disconnected_event = Event()
 
@@ -21,7 +20,6 @@ class ConnectionStatus(object):
 
         def new_on_connected():
             logger.info("new_on_connected")
-            self.connected = True
             self.connected_event.set()
             old_on_connected()
 
@@ -31,20 +29,19 @@ class ConnectionStatus(object):
 
         def new_on_disconnected():
             logger.info("new_on_disconnected")
-            self.connected = False
             self.disconnected_event.set()
             old_on_disconnected()
 
         self.client._iothub_pipeline.on_disconnected = new_on_disconnected
 
     def get_connection_status(self):
-        if self.connected:
+        if self.client.connected:
             return "connected"
         else:
             return "disconnected"
 
     def wait_for_connection_status_change(self):
-        if self.connected:
+        if self.client.connected:
             logger.info("Client appears connected.  Waiting for client to disconenct")
             self.disconnected_event.clear()
             self.disconnected_event.wait()
